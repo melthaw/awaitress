@@ -2,4 +2,4 @@
 
 # AWaitress = Asyncio + Waitress
 
-The async part are re-written with full featured Python Async. And only works with Python 3.5+.  
+The async part are re-written with full featured Python Asyncio. Only works with Python 3.5+.  
