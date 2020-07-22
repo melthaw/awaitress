@@ -1,11 +1,11 @@
 import unittest
 
-from waitress.compat import tobytes
+from awaitress.compat import tobytes
 
 
 class TestProxyHeadersMiddleware(unittest.TestCase):
     def _makeOne(self, app, **kw):
-        from waitress.proxy_headers import proxy_headers_middleware
+        from awaitress.proxy_headers import proxy_headers_middleware
 
         return proxy_headers_middleware(app, **kw)
 
@@ -110,7 +110,7 @@ class TestProxyHeadersMiddleware(unittest.TestCase):
         )
         headers_orig = {
             "X_FORWARDED_FOR": "198.51.100.2",
-            "X_FORWARDED_BY": "Waitress",
+            "X_FORWARDED_BY": "AWaitress",
             "X_FORWARDED_PROTO": "https",
             "X_FORWARDED_HOST": "example.org",
         }
@@ -137,7 +137,7 @@ class TestProxyHeadersMiddleware(unittest.TestCase):
             addr=["192.168.1.1", 80],
             headers={
                 "X_FORWARDED_FOR": "198.51.100.2",
-                "X_FORWARDED_BY": "Waitress",
+                "X_FORWARDED_BY": "AWaitress",
                 "X_FORWARDED_PROTO": "https",
                 "X_FORWARDED_HOST": "example.org",
             },
@@ -145,7 +145,7 @@ class TestProxyHeadersMiddleware(unittest.TestCase):
         self.assertEqual(response.status, "200 OK")
 
         environ = inner.environ
-        self.assertEqual(environ["HTTP_X_FORWARDED_BY"], "Waitress")
+        self.assertEqual(environ["HTTP_X_FORWARDED_BY"], "AWaitress")
         self.assertNotIn("HTTP_X_FORWARDED_FOR", environ)
         self.assertNotIn("HTTP_X_FORWARDED_PROTO", environ)
         self.assertNotIn("HTTP_X_FORWARDED_HOST", environ)
@@ -164,7 +164,7 @@ class TestProxyHeadersMiddleware(unittest.TestCase):
             addr=["192.168.1.255", 80],
             headers={
                 "X_FORWARDED_FOR": "198.51.100.2",
-                "X_FORWARDED_BY": "Waitress",
+                "X_FORWARDED_BY": "AWaitress",
                 "X_FORWARDED_PROTO": "https",
                 "X_FORWARDED_HOST": "example.org",
             },

@@ -5,12 +5,12 @@ import unittest
 
 class Test_unquote_bytes_to_wsgi(unittest.TestCase):
     def _callFUT(self, v):
-        from waitress.compat import unquote_bytes_to_wsgi
+        from awaitress.compat import unquote_bytes_to_wsgi
 
         return unquote_bytes_to_wsgi(v)
 
     def test_highorder(self):
-        from waitress.compat import PY3
+        from awaitress.compat import PY3
 
         val = b"/a%C5%9B"
         result = self._callFUT(val)

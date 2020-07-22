@@ -1,4 +1,4 @@
-from waitress.server import create_server
+from awaitress.server import create_server
 import logging
 
 

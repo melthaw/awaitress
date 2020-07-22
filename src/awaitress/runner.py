@@ -22,8 +22,8 @@ import os.path
 import re
 import sys
 
-from waitress import serve
-from waitress.adjustments import Adjustments
+from awaitress import serve
+from awaitress.adjustments import Adjustments
 
 HELP = """\
 Usage:
@@ -50,7 +50,7 @@ Standard options:
         Note: May not be used together with --listen
 
     --listen=ip:port
-        Tell waitress to listen on an ip port combination.
+        Tell awaitress to listen on an ip port combination.
 
         Example:
 
@@ -104,7 +104,7 @@ Standard options:
 
     --ident=STR
         Server identity used in the 'Server' header in responses. Default
-        is 'waitress'.
+        is 'awaitress'.
 
 Tuning options:
 
@@ -279,7 +279,7 @@ def run(argv=sys.argv, _serve=serve):
     if kw["call"]:
         app = app()
 
-    # These arguments are specific to the runner, not waitress itself.
+    # These arguments are specific to the runner, not awaitress itself.
     del kw["call"], kw["help"]
 
     _serve(app, **kw)

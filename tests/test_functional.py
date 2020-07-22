@@ -9,9 +9,9 @@ import subprocess
 import sys
 import time
 import unittest
-from waitress import server
-from waitress.compat import httplib, tobytes
-from waitress.utilities import cleanup_unix_socket
+from awaitress import server
+from awaitress.compat import httplib, tobytes
+from awaitress.utilities import cleanup_unix_socket
 
 dn = os.path.dirname
 here = dn(__file__)
@@ -28,7 +28,7 @@ class NullHandler(logging.Handler):  # pragma: no cover
 def start_server(app, svr, queue, **kwargs):  # pragma: no cover
     """Run a fixture application.
     """
-    logging.getLogger("waitress").addHandler(NullHandler())
+    logging.getLogger("awaitress").addHandler(NullHandler())
     try_register_coverage()
     svr(app, queue, **kwargs).run()
 
@@ -187,7 +187,7 @@ class EchoTests(object):
         fp = self.sock.makefile("rb", 0)
         line, headers, echo = self._read_echo(fp)
         self.assertline(line, "200", "OK", "HTTP/1.0")
-        self.assertEqual(headers.get("server"), "waitress")
+        self.assertEqual(headers.get("server"), "awaitress")
         self.assertTrue(headers.get("date"))
 
     def test_bad_host_header(self):
@@ -199,7 +199,7 @@ class EchoTests(object):
         fp = self.sock.makefile("rb", 0)
         line, headers, response_body = read_http(fp)
         self.assertline(line, "400", "Bad Request", "HTTP/1.0")
-        self.assertEqual(headers.get("server"), "waitress")
+        self.assertEqual(headers.get("server"), "awaitress")
         self.assertTrue(headers.get("date"))
 
     def test_send_with_body(self):
@@ -471,7 +471,7 @@ class EchoTests(object):
         fp = self.sock.makefile("rb", 0)
         line, headers, echo = self._read_echo(fp)
         self.assertline(line, "200", "OK", "HTTP/1.0")
-        self.assertEqual(headers.get("server"), "waitress")
+        self.assertEqual(headers.get("server"), "awaitress")
         self.assertTrue(headers.get("date"))
         self.assertIsNone(echo.headers.get("X_FORWARDED_PORT"))
         self.assertEqual(echo.headers["HOST"], "www.google.com:8080")
@@ -1511,7 +1511,7 @@ if hasattr(socket, "AF_UNIX"):
         def __init__(self, application, queue, **kw):  # pragma: no cover
             # Coverage doesn't see this as it's ran in a separate process.
             # To permit parallel testing, use a PID-dependent socket.
-            kw["unix_socket"] = "/tmp/waitress.test-%d.sock" % os.getpid()
+            kw["unix_socket"] = "/tmp/awaitress.test-%d.sock" % os.getpid()
             super(FixtureUnixWSGIServer, self).__init__(application, **kw)
             queue.put(self.socket.getsockname())
 

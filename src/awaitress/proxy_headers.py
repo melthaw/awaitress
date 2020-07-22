@@ -153,7 +153,7 @@ def parse_proxy_headers(
             )
 
     if "x-forwarded-by" in trusted_proxy_headers:
-        # Waitress itself does not use X-Forwarded-By, but we can not
+        # AWaitress itself does not use X-Forwarded-By, but we can not
         # remove it so it can get set in the environ
         untrusted_headers.remove("X_FORWARDED_BY")
 
@@ -327,7 +327,7 @@ def clear_untrusted_headers(
             for header in untrusted_headers_removed
         ]
         logger.warning(
-            "Removed untrusted headers (%s). Waitress recommends these be "
+            "Removed untrusted headers (%s). AWaitress recommends these be "
             "removed upstream.",
             ", ".join(untrusted_headers_removed),
         )

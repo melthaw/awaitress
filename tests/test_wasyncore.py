@@ -1,5 +1,5 @@
-from waitress import wasyncore as asyncore
-from waitress import compat
+from awaitress import wasyncore as asyncore
+from awaitress import compat
 import contextlib
 import functools
 import gc
@@ -563,7 +563,7 @@ class DispatcherTests(unittest.TestCase):
 
     def test_repr(self):
         d = asyncore.dispatcher()
-        self.assertEqual(repr(d), "<waitress.wasyncore.dispatcher at %#x>" % id(d))
+        self.assertEqual(repr(d), "<awaitress.wasyncore.dispatcher at %#x>" % id(d))
 
     def test_log_info(self):
         import logging
@@ -1156,7 +1156,7 @@ class TestAPI_UseUnixSocketsPoll(TestAPI_UseUnixSockets, unittest.TestCase):
 
 class Test__strerror(unittest.TestCase):
     def _callFUT(self, err):
-        from waitress.wasyncore import _strerror
+        from awaitress.wasyncore import _strerror
 
         return _strerror(err)
 
@@ -1169,7 +1169,7 @@ class Test__strerror(unittest.TestCase):
 
 class Test_read(unittest.TestCase):
     def _callFUT(self, dispatcher):
-        from waitress.wasyncore import read
+        from awaitress.wasyncore import read
 
         return read(dispatcher)
 
@@ -1180,7 +1180,7 @@ class Test_read(unittest.TestCase):
         self.assertFalse(inst.error_handled)
 
     def test_reraised(self):
-        from waitress.wasyncore import ExitNow
+        from awaitress.wasyncore import ExitNow
 
         inst = DummyDispatcher(ExitNow)
         self.assertRaises(ExitNow, self._callFUT, inst)
@@ -1196,7 +1196,7 @@ class Test_read(unittest.TestCase):
 
 class Test_write(unittest.TestCase):
     def _callFUT(self, dispatcher):
-        from waitress.wasyncore import write
+        from awaitress.wasyncore import write
 
         return write(dispatcher)
 
@@ -1207,7 +1207,7 @@ class Test_write(unittest.TestCase):
         self.assertFalse(inst.error_handled)
 
     def test_reraised(self):
-        from waitress.wasyncore import ExitNow
+        from awaitress.wasyncore import ExitNow
 
         inst = DummyDispatcher(ExitNow)
         self.assertRaises(ExitNow, self._callFUT, inst)
@@ -1223,7 +1223,7 @@ class Test_write(unittest.TestCase):
 
 class Test__exception(unittest.TestCase):
     def _callFUT(self, dispatcher):
-        from waitress.wasyncore import _exception
+        from awaitress.wasyncore import _exception
 
         return _exception(dispatcher)
 
@@ -1234,7 +1234,7 @@ class Test__exception(unittest.TestCase):
         self.assertFalse(inst.error_handled)
 
     def test_reraised(self):
-        from waitress.wasyncore import ExitNow
+        from awaitress.wasyncore import ExitNow
 
         inst = DummyDispatcher(ExitNow)
         self.assertRaises(ExitNow, self._callFUT, inst)
@@ -1251,7 +1251,7 @@ class Test__exception(unittest.TestCase):
 @unittest.skipUnless(hasattr(select, "poll"), "select.poll required")
 class Test_readwrite(unittest.TestCase):
     def _callFUT(self, obj, flags):
-        from waitress.wasyncore import readwrite
+        from awaitress.wasyncore import readwrite
 
         return readwrite(obj, flags)
 
@@ -1300,7 +1300,7 @@ class Test_readwrite(unittest.TestCase):
         self.assertTrue(inst.close_handled)
 
     def test_exception_in_reraised(self):
-        from waitress import wasyncore
+        from awaitress import wasyncore
 
         flags = 0
         flags |= select.POLLIN
@@ -1318,7 +1318,7 @@ class Test_readwrite(unittest.TestCase):
 
 class Test_poll(unittest.TestCase):
     def _callFUT(self, timeout=0.0, map=None):
-        from waitress.wasyncore import poll
+        from awaitress.wasyncore import poll
 
         return poll(timeout, map)
 
@@ -1327,7 +1327,7 @@ class Test_poll(unittest.TestCase):
         dummy_time = DummyTime()
         map = {0: DummyDispatcher()}
         try:
-            from waitress import wasyncore
+            from awaitress import wasyncore
 
             old_time = wasyncore.time
             wasyncore.time = dummy_time
@@ -1344,7 +1344,7 @@ class Test_poll(unittest.TestCase):
         disp.readable = lambda: True
         map = {0: disp}
         try:
-            from waitress import wasyncore
+            from awaitress import wasyncore
 
             old_select = wasyncore.select
             wasyncore.select = dummy_select
@@ -1361,7 +1361,7 @@ class Test_poll(unittest.TestCase):
         disp.readable = lambda: True
         map = {0: disp}
         try:
-            from waitress import wasyncore
+            from awaitress import wasyncore
 
             old_select = wasyncore.select
             wasyncore.select = dummy_select
@@ -1373,7 +1373,7 @@ class Test_poll(unittest.TestCase):
 
 class Test_poll2(unittest.TestCase):
     def _callFUT(self, timeout=0.0, map=None):
-        from waitress.wasyncore import poll2
+        from awaitress.wasyncore import poll2
 
         return poll2(timeout, map)
 
@@ -1384,7 +1384,7 @@ class Test_poll2(unittest.TestCase):
         disp = DummyDispatcher()
         map = {0: disp}
         try:
-            from waitress import wasyncore
+            from awaitress import wasyncore
 
             old_select = wasyncore.select
             wasyncore.select = dummy_select
@@ -1400,7 +1400,7 @@ class Test_poll2(unittest.TestCase):
         disp = DummyDispatcher()
         map = {0: disp}
         try:
-            from waitress import wasyncore
+            from awaitress import wasyncore
 
             old_select = wasyncore.select
             wasyncore.select = dummy_select
@@ -1412,7 +1412,7 @@ class Test_poll2(unittest.TestCase):
 
 class Test_dispatcher(unittest.TestCase):
     def _makeOne(self, sock=None, map=None):
-        from waitress.wasyncore import dispatcher
+        from awaitress.wasyncore import dispatcher
 
         return dispatcher(sock=sock, map=map)
 
@@ -1434,7 +1434,7 @@ class Test_dispatcher(unittest.TestCase):
         inst.accepting = True
         inst.addr = ("localhost", 8080)
         result = repr(inst)
-        expected = "<waitress.wasyncore.dispatcher listening localhost:8080 at"
+        expected = "<awaitress.wasyncore.dispatcher listening localhost:8080 at"
         self.assertEqual(result[: len(expected)], expected)
 
     def test___repr__connected(self):
@@ -1445,7 +1445,7 @@ class Test_dispatcher(unittest.TestCase):
         inst.connected = True
         inst.addr = ("localhost", 8080)
         result = repr(inst)
-        expected = "<waitress.wasyncore.dispatcher connected localhost:8080 at"
+        expected = "<awaitress.wasyncore.dispatcher connected localhost:8080 at"
         self.assertEqual(result[: len(expected)], expected)
 
     def test_set_reuse_addr_with_socketerror(self):
@@ -1639,7 +1639,7 @@ class Test_dispatcher(unittest.TestCase):
 
 class Test_dispatcher_with_send(unittest.TestCase):
     def _makeOne(self, sock=None, map=None):
-        from waitress.wasyncore import dispatcher_with_send
+        from awaitress.wasyncore import dispatcher_with_send
 
         return dispatcher_with_send(sock=sock, map=map)
 
@@ -1654,7 +1654,7 @@ class Test_dispatcher_with_send(unittest.TestCase):
 
 class Test_close_all(unittest.TestCase):
     def _callFUT(self, map=None, ignore_all=False):
-        from waitress.wasyncore import close_all
+        from awaitress.wasyncore import close_all
 
         return close_all(map, ignore_all)
 

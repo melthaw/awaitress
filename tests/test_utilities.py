@@ -17,7 +17,7 @@ import unittest
 
 class Test_parse_http_date(unittest.TestCase):
     def _callFUT(self, v):
-        from waitress.utilities import parse_http_date
+        from awaitress.utilities import parse_http_date
 
         return parse_http_date(v)
 
@@ -39,7 +39,7 @@ class Test_parse_http_date(unittest.TestCase):
 
 class Test_build_http_date(unittest.TestCase):
     def test_rountdrip(self):
-        from waitress.utilities import build_http_date, parse_http_date
+        from awaitress.utilities import build_http_date, parse_http_date
         from time import time
 
         t = int(time())
@@ -48,7 +48,7 @@ class Test_build_http_date(unittest.TestCase):
 
 class Test_unpack_rfc850(unittest.TestCase):
     def _callFUT(self, val):
-        from waitress.utilities import unpack_rfc850, rfc850_reg
+        from awaitress.utilities import unpack_rfc850, rfc850_reg
 
         return unpack_rfc850(rfc850_reg.match(val.lower()))
 
@@ -60,7 +60,7 @@ class Test_unpack_rfc850(unittest.TestCase):
 
 class Test_unpack_rfc_822(unittest.TestCase):
     def _callFUT(self, val):
-        from waitress.utilities import unpack_rfc822, rfc822_reg
+        from awaitress.utilities import unpack_rfc822, rfc822_reg
 
         return unpack_rfc822(rfc822_reg.match(val.lower()))
 
@@ -72,7 +72,7 @@ class Test_unpack_rfc_822(unittest.TestCase):
 
 class Test_find_double_newline(unittest.TestCase):
     def _callFUT(self, val):
-        from waitress.utilities import find_double_newline
+        from awaitress.utilities import find_double_newline
 
         return find_double_newline(val)
 
@@ -97,7 +97,7 @@ class Test_find_double_newline(unittest.TestCase):
 
 class TestBadRequest(unittest.TestCase):
     def _makeOne(self):
-        from waitress.utilities import BadRequest
+        from awaitress.utilities import BadRequest
 
         return BadRequest(1)
 
@@ -108,7 +108,7 @@ class TestBadRequest(unittest.TestCase):
 
 class Test_undquote(unittest.TestCase):
     def _callFUT(self, value):
-        from waitress.utilities import undquote
+        from awaitress.utilities import undquote
 
         return undquote(value)
 

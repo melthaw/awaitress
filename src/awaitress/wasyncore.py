@@ -45,7 +45,7 @@ control than multi-threaded programming. The module documented here solves
 many of the difficult problems for you, making the task of building
 sophisticated high-performance network servers and clients a snap.
 
-NB: this is a fork of asyncore from the stdlib that we've (the waitress
+NB: this is a fork of asyncore from the stdlib that we've (the awaitress
 developers) named 'wasyncore' to ensure forward compatibility, as asyncore
 in the stdlib will be dropped soon.  It is neither a copy of the 2.7 asyncore
 nor the 3.X asyncore; it is a version compatible with either 2.7 or 3.X.

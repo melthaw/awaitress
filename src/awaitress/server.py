@@ -17,13 +17,13 @@ import os.path
 import socket
 import time
 
-from waitress import trigger
-from waitress.adjustments import Adjustments
-from waitress.channel import HTTPChannel
-from waitress.task import ThreadedTaskDispatcher
-from waitress.utilities import cleanup_unix_socket
+from awaitress import trigger
+from awaitress.adjustments import Adjustments
+from awaitress.channel import HTTPChannel
+from awaitress.task import ThreadedTaskDispatcher
+from awaitress.utilities import cleanup_unix_socket
 
-from waitress.compat import (
+from awaitress.compat import (
     IPPROTO_IPV6,
     IPV6_V6ONLY,
 )

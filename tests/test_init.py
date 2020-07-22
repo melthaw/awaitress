@@ -3,7 +3,7 @@ import unittest
 
 class Test_serve(unittest.TestCase):
     def _callFUT(self, app, **kw):
-        from waitress import serve
+        from awaitress import serve
 
         return serve(app, **kw)
 
@@ -18,7 +18,7 @@ class Test_serve(unittest.TestCase):
 
 class Test_serve_paste(unittest.TestCase):
     def _callFUT(self, app, **kw):
-        from waitress import serve_paste
+        from awaitress import serve_paste
 
         return serve_paste(app, None, **kw)
 

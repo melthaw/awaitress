@@ -18,7 +18,7 @@ class TestWSGIServer(unittest.TestCase):
         _sock=None,
         _server=None,
     ):
-        from waitress.server import create_server
+        from awaitress.server import create_server
 
         self.inst = create_server(
             application,
@@ -53,7 +53,7 @@ class TestWSGIServer(unittest.TestCase):
         sock = DummySock()
         task_dispatcher = DummyTaskDispatcher()
         map = {}
-        from waitress.server import create_server
+        from awaitress.server import create_server
 
         self.inst = create_server(
             app,
@@ -75,7 +75,7 @@ class TestWSGIServer(unittest.TestCase):
         _server=None,
         sockets=None,
     ):
-        from waitress.server import create_server
+        from awaitress.server import create_server
 
         _sockets = []
         if sockets is not None:
@@ -274,8 +274,8 @@ class TestWSGIServer(unittest.TestCase):
         self.assertEqual(zombie.will_close, True)
 
     def test_backward_compatibility(self):
-        from waitress.server import WSGIServer, TcpWSGIServer
-        from waitress.adjustments import Adjustments
+        from awaitress.server import WSGIServer, TcpWSGIServer
+        from awaitress.adjustments import Adjustments
 
         self.assertTrue(WSGIServer is TcpWSGIServer)
         self.inst = WSGIServer(None, _start=False, port=1234)
@@ -284,7 +284,7 @@ class TestWSGIServer(unittest.TestCase):
         self.assertEqual(self.inst.adj.port, 1234)
 
     def test_create_with_one_tcp_socket(self):
-        from waitress.server import TcpWSGIServer
+        from awaitress.server import TcpWSGIServer
 
         sockets = [socket.socket(socket.AF_INET, socket.SOCK_STREAM)]
         sockets[0].bind(("127.0.0.1", 0))
@@ -292,7 +292,7 @@ class TestWSGIServer(unittest.TestCase):
         self.assertTrue(isinstance(inst, TcpWSGIServer))
 
     def test_create_with_multiple_tcp_sockets(self):
-        from waitress.server import MultiSocketServer
+        from awaitress.server import MultiSocketServer
 
         sockets = [
             socket.socket(socket.AF_INET, socket.SOCK_STREAM),
@@ -330,10 +330,10 @@ class TestWSGIServer(unittest.TestCase):
 if hasattr(socket, "AF_UNIX"):
 
     class TestUnixWSGIServer(unittest.TestCase):
-        unix_socket = "/tmp/waitress.test.sock"
+        unix_socket = "/tmp/awaitress.test.sock"
 
         def _makeOne(self, _start=True, _sock=None):
-            from waitress.server import create_server
+            from awaitress.server import create_server
 
             self.inst = create_server(
                 dummy_app,
@@ -356,7 +356,7 @@ if hasattr(socket, "AF_UNIX"):
             _server=None,
             sockets=None,
         ):
-            from waitress.server import create_server
+            from awaitress.server import create_server
 
             _sockets = []
             if sockets is not None:
@@ -401,7 +401,7 @@ if hasattr(socket, "AF_UNIX"):
             self.assertEqual(L, [(inst, client, ("localhost", None), inst.adj)])
 
         def test_creates_new_sockinfo(self):
-            from waitress.server import UnixWSGIServer
+            from awaitress.server import UnixWSGIServer
 
             self.inst = UnixWSGIServer(
                 dummy_app, unix_socket=self.unix_socket, unix_socket_perms="600"
@@ -410,7 +410,7 @@ if hasattr(socket, "AF_UNIX"):
             self.assertEqual(self.inst.sockinfo[0], socket.AF_UNIX)
 
         def test_create_with_unix_socket(self):
-            from waitress.server import (
+            from awaitress.server import (
                 MultiSocketServer,
                 BaseWSGIServer,
                 TcpWSGIServer,

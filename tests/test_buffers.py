@@ -4,7 +4,7 @@ import io
 
 class TestFileBasedBuffer(unittest.TestCase):
     def _makeOne(self, file=None, from_buffer=None):
-        from waitress.buffers import FileBasedBuffer
+        from awaitress.buffers import FileBasedBuffer
 
         buf = FileBasedBuffer(file, from_buffer=from_buffer)
         self.buffers_to_close.append(buf)
@@ -125,7 +125,7 @@ class TestFileBasedBuffer(unittest.TestCase):
 
 class TestTempfileBasedBuffer(unittest.TestCase):
     def _makeOne(self, from_buffer=None):
-        from waitress.buffers import TempfileBasedBuffer
+        from awaitress.buffers import TempfileBasedBuffer
 
         buf = TempfileBasedBuffer(from_buffer=from_buffer)
         self.buffers_to_close.append(buf)
@@ -147,7 +147,7 @@ class TestTempfileBasedBuffer(unittest.TestCase):
 
 class TestBytesIOBasedBuffer(unittest.TestCase):
     def _makeOne(self, from_buffer=None):
-        from waitress.buffers import BytesIOBasedBuffer
+        from awaitress.buffers import BytesIOBasedBuffer
 
         return BytesIOBasedBuffer(from_buffer=from_buffer)
 
@@ -169,7 +169,7 @@ class TestBytesIOBasedBuffer(unittest.TestCase):
 
 class TestReadOnlyFileBasedBuffer(unittest.TestCase):
     def _makeOne(self, file, block_size=8192):
-        from waitress.buffers import ReadOnlyFileBasedBuffer
+        from awaitress.buffers import ReadOnlyFileBasedBuffer
 
         buf = ReadOnlyFileBasedBuffer(file, block_size)
         self.buffers_to_close.append(buf)
@@ -267,7 +267,7 @@ class TestReadOnlyFileBasedBuffer(unittest.TestCase):
 
 class TestOverflowableBuffer(unittest.TestCase):
     def _makeOne(self, overflow=10):
-        from waitress.buffers import OverflowableBuffer
+        from awaitress.buffers import OverflowableBuffer
 
         buf = OverflowableBuffer(overflow)
         self.buffers_to_close.append(buf)
@@ -313,7 +313,7 @@ class TestOverflowableBuffer(unittest.TestCase):
         self.buffers_to_close.remove(inst)
 
     def test__create_buffer_large(self):
-        from waitress.buffers import TempfileBasedBuffer
+        from awaitress.buffers import TempfileBasedBuffer
 
         inst = self._makeOne()
         inst.strbuf = b"x" * 11
@@ -323,7 +323,7 @@ class TestOverflowableBuffer(unittest.TestCase):
         self.assertEqual(inst.strbuf, b"")
 
     def test__create_buffer_small(self):
-        from waitress.buffers import BytesIOBasedBuffer
+        from awaitress.buffers import BytesIOBasedBuffer
 
         inst = self._makeOne()
         inst.strbuf = b"x" * 5
@@ -333,7 +333,7 @@ class TestOverflowableBuffer(unittest.TestCase):
         self.assertEqual(inst.strbuf, b"")
 
     def test_append_with_len_more_than_max_int(self):
-        from waitress.compat import MAXINT
+        from awaitress.compat import MAXINT
 
         inst = self._makeOne()
         inst.overflowed = True
@@ -366,7 +366,7 @@ class TestOverflowableBuffer(unittest.TestCase):
         self.assertEqual(len(inst.buf), 8197)
 
     def test_append_sz_gt_overflow(self):
-        from waitress.buffers import BytesIOBasedBuffer
+        from awaitress.buffers import BytesIOBasedBuffer
 
         f = io.BytesIO(b"data")
         inst = self._makeOne(f)
@@ -446,7 +446,7 @@ class TestOverflowableBuffer(unittest.TestCase):
         self.assertNotEqual(inst.buf, buf)
 
     def test_prune_with_buflen_more_than_max_int(self):
-        from waitress.compat import MAXINT
+        from awaitress.compat import MAXINT
 
         inst = self._makeOne()
         inst.overflowed = True

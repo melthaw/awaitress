@@ -178,13 +178,13 @@ class Adjustments(object):
     # forwarded-proto, forwarded-port.
     trusted_proxy_headers = set()
 
-    # Would you like waitress to log warnings about untrusted proxy headers
+    # Would you like awaitress to log warnings about untrusted proxy headers
     # that were encountered while processing the proxy headers? This only makes
     # sense to set when you have a trusted_proxy, and you expect the upstream
     # proxy server to filter invalid headers
     log_untrusted_proxy_headers = False
 
-    # Should waitress clear any proxy headers that are not deemed trusted from
+    # Should awaitress clear any proxy headers that are not deemed trusted from
     # the environ? Change to True by default in 2.x
     clear_untrusted_proxy_headers = _bool_marker
 
@@ -196,9 +196,9 @@ class Adjustments(object):
     url_prefix = ""
 
     # server identity (sent in Server: header)
-    ident = "waitress"
+    ident = "awaitress"
 
-    # backlog is the value waitress passes to pass to socket.listen() This is
+    # backlog is the value awaitress passes to pass to socket.listen() This is
     # the maximum number of incoming TCP connections that will wait in an OS
     # queue for an available channel.  From listen(1): "If a connection
     # request arrives when the queue is full, the client may receive an error
@@ -232,7 +232,7 @@ class Adjustments(object):
     # Each channel consumes at least one file descriptor, and, depending on
     # the input and output body sizes, potentially up to three.  The default
     # is conservative, but you may need to increase the number of file
-    # descriptors available to the Waitress process on most platforms in
+    # descriptors available to the AWaitress process on most platforms in
     # order to safely change it (see ``ulimit -a`` "open files" setting).
     # Note that this doesn't control the maximum number of TCP connections
     # that can be waiting for processing; the ``backlog`` argument controls
@@ -265,7 +265,7 @@ class Adjustments(object):
 
     # The socket options to set on receiving a connection.  It is a list of
     # (level, optname, value) tuples.  TCP_NODELAY disables the Nagle
-    # algorithm for writes (Waitress already buffers its writes).
+    # algorithm for writes (AWaitress already buffers its writes).
     socket_options = [
         (socket.SOL_TCP, socket.TCP_NODELAY, 1),
     ]
@@ -282,7 +282,7 @@ class Adjustments(object):
     # Enable IPv6 by default
     ipv6 = True
 
-    # A list of sockets that waitress will use to accept connections. They can
+    # A list of sockets that awaitress will use to accept connections. They can
     # be used for e.g. socket activation
     sockets = []
 
@@ -432,14 +432,14 @@ class Adjustments(object):
             warnings.warn(
                 "No proxy headers were marked as trusted, but trusted_proxy was set. "
                 "Implicitly trusting X-Forwarded-Proto for backwards compatibility. "
-                "This will be removed in future versions of waitress.",
+                "This will be removed in future versions of awaitress.",
                 DeprecationWarning,
             )
             self.trusted_proxy_headers = {"x-forwarded-proto"}
 
         if self.clear_untrusted_proxy_headers is _bool_marker:
             warnings.warn(
-                "In future versions of Waitress clear_untrusted_proxy_headers will be "
+                "In future versions of AWaitress clear_untrusted_proxy_headers will be "
                 "set to True by default. You may opt-out by setting this value to "
                 "False, or opt-in explicitly by setting this to True.",
                 DeprecationWarning,

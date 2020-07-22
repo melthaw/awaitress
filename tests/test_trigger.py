@@ -6,7 +6,7 @@ if not sys.platform.startswith("win"):
 
     class Test_trigger(unittest.TestCase):
         def _makeOne(self, map):
-            from waitress.trigger import trigger
+            from awaitress.trigger import trigger
 
             self.inst = trigger(map)
             return self.inst

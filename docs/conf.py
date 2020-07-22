@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# waitress documentation build configuration file
+# awaitress documentation build configuration file
 #
 # This file is execfile()d with the current directory set to its containing
 # dir.
@@ -45,7 +45,7 @@ source_suffix = ".rst"
 master_doc = "index"
 
 # General substitutions.
-project = "waitress"
+project = "awaitress"
 thisyear = datetime.datetime.now().year
 copyright = "2012-%s, Agendaless Consulting <chrism@plope.com>" % thisyear
 
@@ -53,7 +53,7 @@ copyright = "2012-%s, Agendaless Consulting <chrism@plope.com>" % thisyear
 # other places throughout the built documents.
 #
 # The short X.Y version.
-version = pkg_resources.get_distribution("waitress").version
+version = pkg_resources.get_distribution("awaitress").version
 # The full version, including alpha/beta/rc tags.
 release = version
 
@@ -102,7 +102,7 @@ smartquotes = False
 # Add and use Pylons theme
 html_theme = "pylons"
 html_theme_path = pylons_sphinx_themes.get_html_themes_path()
-html_theme_options = dict(github_url="https://github.com/Pylons/waitress")
+html_theme_options = dict(github_url="https://github.com/melthaw/awaitress")
 
 # The style sheet to use for HTML and HTML Help pages. A file of that name
 # must exist either in Sphinx' static/ path, or in one of the custom paths
@@ -169,7 +169,7 @@ html_last_updated_fmt = "%b %d, %Y"
 # html_file_suffix = ''
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = "waitress"
+htmlhelp_basename = "awaitress"
 
 # Control display of sidebars
 html_sidebars = {
@@ -197,8 +197,8 @@ html_sidebars = {
 latex_documents = [
     (
         "index",
-        "waitress.tex",
-        "waitress Documentation",
+        "awaitress.tex",
+        "awaitress Documentation",
         "Pylons Project Developers",
         "manual",
     ),

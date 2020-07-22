@@ -142,7 +142,7 @@ else:  # pragma: no cover
     else:
         warnings.warn(
             "OS does not support required IPv6 socket flags. This is requirement "
-            "for Waitress. Please open an issue at https://github.com/Pylons/waitress. "
+            "for AWaitress. Please open an issue at https://github.com/melthaw/awaitress. "
             "IPv6 support has been disabled.",
             RuntimeWarning,
         )

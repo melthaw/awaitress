@@ -7,7 +7,7 @@ if sys.version_info[:2] == (2, 6):  # pragma: no cover
 else:  # pragma: no cover
     import unittest
 
-from waitress import runner
+from awaitress import runner
 
 
 class Test_match(unittest.TestCase):
@@ -62,7 +62,7 @@ class Test_resolve(unittest.TestCase):
 
 class Test_run(unittest.TestCase):
     def match_output(self, argv, code, regex):
-        argv = ["waitress-serve"] + argv
+        argv = ["awaitress-serve"] + argv
         with capture() as captured:
             self.assertEqual(runner.run(argv=argv), code)
         self.assertRegexpMatches(captured.getvalue(), regex)
@@ -72,7 +72,7 @@ class Test_run(unittest.TestCase):
         self.match_output(["--bad-opt"], 1, "^Error: option --bad-opt not recognized")
 
     def test_help(self):
-        self.match_output(["--help"], 0, "^Usage:\n\n    waitress-serve")
+        self.match_output(["--help"], 0, "^Usage:\n\n    awaitress-serve")
 
     def test_no_app(self):
         self.match_output([], 1, "^Error: Specify one application only")
@@ -105,7 +105,7 @@ class Test_run(unittest.TestCase):
         try:
             os.chdir(os.path.dirname(__file__))
             argv = [
-                "waitress-serve",
+                "awaitress-serve",
                 "fixtureapps.runner:app",
             ]
             self.assertEqual(runner.run(argv=argv, _serve=null_serve), 0)
@@ -126,7 +126,7 @@ class Test_run(unittest.TestCase):
             self.assertDictEqual(kw, {"port": "80"})
 
         argv = [
-            "waitress-serve",
+            "awaitress-serve",
             "--port=80",
             "tests.fixtureapps.runner:app",
         ]
@@ -140,7 +140,7 @@ class Test_run(unittest.TestCase):
             self.assertDictEqual(kw, {"port": "80"})
 
         argv = [
-            "waitress-serve",
+            "awaitress-serve",
             "--port=80",
             "--call",
             "tests.fixtureapps.runner:returns_app",
@@ -150,7 +150,7 @@ class Test_run(unittest.TestCase):
 
 class Test_helper(unittest.TestCase):
     def test_exception_logging(self):
-        from waitress.runner import show_exception
+        from awaitress.runner import show_exception
 
         regex = (
             r"There was an exception \(ImportError\) importing your module."
@@ -181,7 +181,7 @@ class Test_helper(unittest.TestCase):
 
 @contextlib.contextmanager
 def capture():
-    from waitress.compat import NativeIO
+    from awaitress.compat import NativeIO
 
     fd = NativeIO()
     sys.stdout = fd

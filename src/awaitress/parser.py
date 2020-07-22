@@ -19,10 +19,10 @@ processing but threads to do work.
 import re
 from io import BytesIO
 
-from waitress.buffers import OverflowableBuffer
-from waitress.compat import tostr, unquote_bytes_to_wsgi, urlparse
-from waitress.receiver import ChunkedReceiver, FixedStreamReceiver
-from waitress.utilities import (
+from awaitress.buffers import OverflowableBuffer
+from awaitress.compat import tostr, unquote_bytes_to_wsgi, urlparse
+from awaitress.receiver import ChunkedReceiver, FixedStreamReceiver
+from awaitress.utilities import (
     BadRequest,
     RequestEntityTooLarge,
     RequestHeaderFieldsTooLarge,
@@ -403,7 +403,7 @@ def crack_first_line(line):
         # https://tools.ietf.org/html/rfc7231#section-4.1
 
         # By disallowing anything but uppercase methods we save poor
-        # unsuspecting souls from sending lowercase HTTP methods to waitress
+        # unsuspecting souls from sending lowercase HTTP methods to awaitress
         # and having the request complete, while servers like nginx drop the
         # request onto the floor.
         if method != method.upper():

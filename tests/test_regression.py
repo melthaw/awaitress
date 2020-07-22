@@ -11,7 +11,7 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-"""Tests for waitress.channel maintenance logic
+"""Tests for awaitress.channel maintenance logic
 """
 import doctest
 
@@ -48,10 +48,10 @@ def zombies_test():
     channel is created, regardless of activity.
 
     >>> import time
-    >>> import waitress.adjustments
-    >>> config = waitress.adjustments.Adjustments()
+    >>> import awaitress.adjustments
+    >>> config = awaitress.adjustments.Adjustments()
 
-    >>> from waitress.server import HTTPServer
+    >>> from awaitress.server import HTTPServer
     >>> class TestServer(HTTPServer):
     ...     def bind(self, (ip, port)):
     ...         print "Listening on %s:%d" % (ip or '*', port)
@@ -61,7 +61,7 @@ def zombies_test():
     First we confirm the correct behavior, where a channel with no activity
     for the timeout duration gets closed.
 
-    >>> from waitress.channel import HTTPChannel
+    >>> from awaitress.channel import HTTPChannel
     >>> socket = FakeSocket(42)
     >>> channel = HTTPChannel(sb, socket, ('localhost', 42))
 
@@ -111,9 +111,9 @@ def zombies_test():
 
     >>> channel3.last_activity -= int(config.channel_timeout) + 1
 
-    >>> import waitress.parser
+    >>> import awaitress.parser
     >>> channel3.parser_class = (
-    ...    waitress.parser.HTTPRequestParser)
+    ...    awaitress.parser.HTTPRequestParser)
     >>> channel3.handle_read()
 
     >>> channel3.next_channel_cleanup[0] = channel3.creation_time - int(

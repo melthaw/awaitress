@@ -4,7 +4,7 @@ import io
 
 class TestHTTPChannel(unittest.TestCase):
     def _makeOne(self, sock, addr, adj, map=None):
-        from waitress.channel import HTTPChannel
+        from awaitress.channel import HTTPChannel
 
         server = DummyServer()
         return HTTPChannel(server, sock, addr, adj=adj, map=map)
@@ -25,7 +25,7 @@ class TestHTTPChannel(unittest.TestCase):
         self.assertEqual(map[100], inst)
 
     def test_total_outbufs_len_an_outbuf_size_gt_sys_maxint(self):
-        from waitress.compat import MAXINT
+        from awaitress.compat import MAXINT
 
         inst, _, map = self._makeOneWithMap()
 
@@ -218,7 +218,7 @@ class TestHTTPChannel(unittest.TestCase):
         self.assertEqual(len(inst.outbufs[0]), 1)
 
     def test_write_soon_filewrapper(self):
-        from waitress.buffers import ReadOnlyFileBasedBuffer
+        from awaitress.buffers import ReadOnlyFileBasedBuffer
 
         f = io.BytesIO(b"abc")
         wrapper = ReadOnlyFileBasedBuffer(f, 8192)
@@ -234,14 +234,14 @@ class TestHTTPChannel(unittest.TestCase):
         self.assertEqual(outbufs[2].__class__.__name__, "OverflowableBuffer")
 
     def test_write_soon_disconnected(self):
-        from waitress.channel import ClientDisconnected
+        from awaitress.channel import ClientDisconnected
 
         inst, sock, map = self._makeOneWithMap()
         inst.connected = False
         self.assertRaises(ClientDisconnected, lambda: inst.write_soon(b"stuff"))
 
     def test_write_soon_disconnected_while_over_watermark(self):
-        from waitress.channel import ClientDisconnected
+        from awaitress.channel import ClientDisconnected
 
         inst, sock, map = self._makeOneWithMap()
 
@@ -363,7 +363,7 @@ class TestHTTPChannel(unittest.TestCase):
         self.assertEqual(len(inst.logger.exceptions), 1)
 
     def test__flush_some_outbuf_len_gt_sys_maxint(self):
-        from waitress.compat import MAXINT
+        from awaitress.compat import MAXINT
 
         inst, sock, map = self._makeOneWithMap()
 
@@ -645,7 +645,7 @@ class TestHTTPChannel(unittest.TestCase):
         self.assertTrue(request.closed)
 
     def test_service_with_request_raises_disconnect(self):
-        from waitress.channel import ClientDisconnected
+        from awaitress.channel import ClientDisconnected
 
         inst, sock, map = self._makeOneWithMap()
         inst.adj.expose_tracebacks = False
@@ -666,7 +666,7 @@ class TestHTTPChannel(unittest.TestCase):
         self.assertTrue(request.closed)
 
     def test_service_with_request_error_raises_disconnect(self):
-        from waitress.channel import ClientDisconnected
+        from awaitress.channel import ClientDisconnected
 
         inst, sock, map = self._makeOneWithMap()
         inst.adj.expose_tracebacks = False
@@ -794,7 +794,7 @@ class DummyAdjustments(object):
     recv_bytes = 8192
     send_bytes = 1
     expose_tracebacks = True
-    ident = "waitress"
+    ident = "awaitress"
     max_request_header_size = 10000
 
 

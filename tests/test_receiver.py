@@ -3,7 +3,7 @@ import unittest
 
 class TestFixedStreamReceiver(unittest.TestCase):
     def _makeOne(self, cl, buf):
-        from waitress.receiver import FixedStreamReceiver
+        from awaitress.receiver import FixedStreamReceiver
 
         return FixedStreamReceiver(cl, buf)
 
@@ -51,7 +51,7 @@ class TestFixedStreamReceiver(unittest.TestCase):
 
 class TestChunkedReceiver(unittest.TestCase):
     def _makeOne(self, buf):
-        from waitress.receiver import ChunkedReceiver
+        from awaitress.receiver import ChunkedReceiver
 
         return ChunkedReceiver(buf)
 
@@ -164,7 +164,7 @@ class TestChunkedReceiver(unittest.TestCase):
         self.assertEqual(buf.data[0], b"Wiki")
 
     def test_received_chunk_not_properly_terminated(self):
-        from waitress.utilities import BadRequest
+        from awaitress.utilities import BadRequest
 
         buf = DummyBuffer()
         inst = self._makeOne(buf)
@@ -176,7 +176,7 @@ class TestChunkedReceiver(unittest.TestCase):
         self.assertEqual(inst.error.__class__, BadRequest)
 
     def test_received_multiple_chunks(self):
-        from waitress.utilities import BadRequest
+        from awaitress.utilities import BadRequest
 
         buf = DummyBuffer()
         inst = self._makeOne(buf)
@@ -199,7 +199,7 @@ class TestChunkedReceiver(unittest.TestCase):
         self.assertEqual(inst.error, None)
 
     def test_received_multiple_chunks_split(self):
-        from waitress.utilities import BadRequest
+        from awaitress.utilities import BadRequest
 
         buf = DummyBuffer()
         inst = self._makeOne(buf)

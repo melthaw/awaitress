@@ -59,7 +59,7 @@ class ThreadedTaskDispatcher(object):
 
     def start_new_thread(self, target, thread_no):
         t = threading.Thread(
-            target=target, name="waitress-{}".format(thread_no), args=(thread_no,)
+            target=target, name="awaitress-{}".format(thread_no), args=(thread_no,)
         )
         t.daemon = True
         t.start()
@@ -264,7 +264,7 @@ class Task(object):
             if ident:
                 response_headers.append(("Server", ident))
         else:
-            response_headers.append(("Via", ident or "waitress"))
+            response_headers.append(("Via", ident or "awaitress"))
 
         if not date_header:
             response_headers.append(("Date", build_http_date(self.start_time)))

@@ -2,7 +2,7 @@ import sys
 import socket
 import warnings
 
-from waitress.compat import (
+from awaitress.compat import (
     PY2,
     WIN,
 )
@@ -15,7 +15,7 @@ else:  # pragma: no cover
 
 class Test_asbool(unittest.TestCase):
     def _callFUT(self, s):
-        from waitress.adjustments import asbool
+        from awaitress.adjustments import asbool
 
         return asbool(s)
 
@@ -54,7 +54,7 @@ class Test_asbool(unittest.TestCase):
 
 class Test_as_socket_list(unittest.TestCase):
     def test_only_sockets_in_list(self):
-        from waitress.adjustments import as_socket_list
+        from awaitress.adjustments import as_socket_list
 
         sockets = [
             socket.socket(socket.AF_INET, socket.SOCK_STREAM),
@@ -68,7 +68,7 @@ class Test_as_socket_list(unittest.TestCase):
             sock.close()
 
     def test_not_only_sockets_in_list(self):
-        from waitress.adjustments import as_socket_list
+        from awaitress.adjustments import as_socket_list
 
         sockets = [
             socket.socket(socket.AF_INET, socket.SOCK_STREAM),
@@ -105,7 +105,7 @@ class TestAdjustments(unittest.TestCase):
                 raise e
 
     def _makeOne(self, **kw):
-        from waitress.adjustments import Adjustments
+        from awaitress.adjustments import Adjustments
 
         return Adjustments(**kw)
 
@@ -402,7 +402,7 @@ class TestAdjustments(unittest.TestCase):
 
 class TestCLI(unittest.TestCase):
     def parse(self, argv):
-        from waitress.adjustments import Adjustments
+        from awaitress.adjustments import Adjustments
 
         return Adjustments.parse_args(argv)
 
@@ -467,7 +467,7 @@ if hasattr(socket, "AF_UNIX"):
 
     class TestUnixSocket(unittest.TestCase):
         def _makeOne(self, **kw):
-            from waitress.adjustments import Adjustments
+            from awaitress.adjustments import Adjustments
 
             return Adjustments(**kw)
 

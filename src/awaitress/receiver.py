@@ -14,7 +14,7 @@
 """Data Chunk Receiver
 """
 
-from waitress.utilities import BadRequest, find_double_newline
+from awaitress.utilities import BadRequest, find_double_newline
 
 
 class FixedStreamReceiver(object):
