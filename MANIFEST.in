@@ -1,4 +1,4 @@
-graft src/waitress
+graft src/awaitress
 graft tests
 graft docs
 graft .github
